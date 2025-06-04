@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import random from "random";
-import { useMetaframe } from "@metapages/metaframe-hook";
-import { useHashParamJson } from "@metapages/hash-query";
+import { useMetaframe } from "@metapages/metapage-react";
+import { useHashParamJson } from "@metapages/hash-query/react-hooks";
 import {
   defaultOptions,
   defaultOptionsSin,
@@ -94,7 +94,7 @@ export const Random: React.FC = () => {
     const handle = setInterval(() => {
       const val = rand.rand();
       metaframe.metaframe?.setOutput("v", val);
-      if (options.showOutput) {
+      if (options?.showOutput) {
         setValue(`${val}`);
       }
     }, 1000 / rand.frequency);
@@ -102,7 +102,7 @@ export const Random: React.FC = () => {
     return () => {
       clearInterval(handle);
     };
-  }, [metaframe, rand, options.showOutput, setValue]);
+  }, [metaframe, rand, options?.showOutput, setValue]);
 
   const staticEmittingText = useMemo(
     () => (
@@ -113,5 +113,5 @@ export const Random: React.FC = () => {
     []
   );
 
-  return <div>{options.showOutput ? value : staticEmittingText}</div>;
+  return <div>{options?.showOutput ? value : staticEmittingText}</div>;
 };

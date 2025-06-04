@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { Random } from "/@/components/Random";
 import { HamburgerIcon, ViewIcon, EditIcon, InfoIcon } from "@chakra-ui/icons";
-import { useHashParamBoolean } from "@metapages/hash-query";
+import { useHashParamBoolean } from "@metapages/hash-query/react-hooks";
 import { useCallback } from "react";
 import { HelpPanel } from "/@/components/HelpPanel";
 import { OptionsPanel } from "/@/components/OptionsPanel";

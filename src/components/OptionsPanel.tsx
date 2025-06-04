@@ -11,7 +11,7 @@ import {
 import { useFormik } from "formik";
 import { useCallback } from "react";
 import * as yup from "yup";
-import { useHashParamJson } from "@metapages/hash-query";
+import { useHashParamJson } from "@metapages/hash-query/react-hooks";
 
 export type Distribution =
   | "uniform"
@@ -159,17 +159,17 @@ export const OptionsPanel: React.FC = () => {
 
   const formik = useFormik({
     initialValues: {
-      showOutput: options.showOutput,
-      frequency: options.frequency,
-      distribution: options.distribution,
-      distributionOptionsMin: (options.options as any)?.min ?? 0,
-      distributionOptionsMax: (options.options as any)?.max ?? 1,
+      showOutput: options?.showOutput,
+      frequency: options?.frequency,
+      distribution: options?.distribution,
+      distributionOptionsMin: (options?.options as any)?.min ?? 0,
+      distributionOptionsMax: (options?.options as any)?.max ?? 1,
       distributionOptionsIncrement:
-        (options.options as any)?.increment ?? defaultOptionsSin.increment,
+        (options?.options as any)?.increment ?? defaultOptionsSin.increment,
       distributionOptionsMu:
-        (options.options as any)?.mu ?? defaultOptionsNormal.mu,
+        (options?.options as any)?.mu ?? defaultOptionsNormal.mu,
       distributionOptionsSigma:
-        (options.options as any)?.sigma ?? defaultOptionsNormal.sigma,
+        (options?.options as any)?.sigma ?? defaultOptionsNormal.sigma,
     },
     onSubmit,
 
@@ -238,8 +238,8 @@ export const OptionsPanel: React.FC = () => {
           </Select>
         </FormControl>
 
-        {options.distribution === "uniform" ||
-        options.distribution === "uniformInt" ? (
+        {options?.distribution === "uniform" ||
+        options?.distribution === "uniformInt" ? (
           <>
             <FormControl>
               <FormLabel htmlFor="distributionOptionsMin">Minimum</FormLabel>
@@ -275,7 +275,7 @@ export const OptionsPanel: React.FC = () => {
           </>
         ) : null}
 
-        {options.distribution === "normal" ? (
+        {options?.distribution === "normal" ? (
           <>
             <FormControl>
               <FormLabel htmlFor="distributionOptionsMu">μ</FormLabel>
@@ -311,7 +311,7 @@ export const OptionsPanel: React.FC = () => {
           </>
         ) : null}
 
-        {options.distribution === "sin" ? (
+        {options?.distribution === "sin" ? (
           <FormControl>
             <FormLabel htmlFor="distributionOptionsIncrement">
               increment
